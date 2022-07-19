@@ -4,22 +4,38 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>Draw A Card!</header>
     </div>
   );
 }
 
 export default App;
+
+
+
+// Clair's Thinking Space
+/**
+ *
+ * App
+ * Props:None
+ * State: Cards: []
+ * State: deckId = integer
+ *
+ * function async drawCard(){
+ * axios get (http://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=2)
+ * }
+ *
+ * useEffect(callback(async axios req to set(deckID)),[]) to run only once
+ *
+ * return (
+ * <button onClick=drawCard>
+ *
+ * {cards.pile.map(card => <div><img src=card.img>)}
+ *
+ *
+ * )
+ *
+ *
+ *
+ *
+ */
