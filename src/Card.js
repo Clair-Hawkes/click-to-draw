@@ -1,5 +1,12 @@
 import React from "react";
 
+const DEFAULT_CARD = {
+  "image": "http://deckofcardsapi.com/static/img/KH.png",
+  "value": "KING",
+  "suit": "HEARTS",
+  "code": "KH"
+};
+
 /** Card component for presenting a card img.
  *
  * Props:
@@ -7,14 +14,10 @@ import React from "react";
  *
  * App -> Card
  */
-function Card({card}){
+function Card({card=DEFAULT_CARD}){
+  
   return (
-    <header>Card component</header>
-
-    //TODO: Render Card via template
-    // <div><img src={card.img} alt="card"/></div>
-
-
+    <div><img src={card.image} alt={`${card.value} of ${card.suit}`}/></div>
   )
 }
 

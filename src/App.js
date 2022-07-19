@@ -5,6 +5,8 @@ import './App.css';
 
 import Card from './Card';
 
+const BASE_URL = 'http://deckofcardsapi.com/api';
+
 
 /** App for drawing cards
  *
@@ -16,11 +18,30 @@ import Card from './Card';
  */
 function App() {
   //TODO: cards state
-  // TODO: deckId state
-
+  const [ deck, setDeck ] = useState({
+    deckId: null,
+    isLoading: true
+  });
+  console.log('App, deck', deck);
+  
+  /** fetch DeckID when first starting the app */
+  useEffect(function fetchDeckIdOnMount(){
+    console.log('useEffect');
+    async function fetchDeckId() {
+      const deckResult = await axios.get(`${BASE_URL}/deck/new`);
+      setDeck({
+        deckId: deckResult.data.deck_id,
+        isLoading: false
+      });
+    }
+    fetchDeckId();
+  }, []);
+  
+  if(deck.isLoading){
+    return <i>Shuffling the deck!</i>;
+  } 
+  
   // TODO: drawCard function
-
-  //TODO: useEffect
 
 
   return (
@@ -32,8 +53,6 @@ function App() {
 }
 
 export default App;
-
-
 
 // Clair's Thinking Space
 /**
@@ -49,6 +68,13 @@ export default App;
  * }
  *
  * useEffect(callback(async axios req to set(deckID)),[]) to run only once
+ * 
+ {
+    "success": true,
+    "deck_id": "3p40paa87x90",
+    "shuffled": false,
+    "remaining": 52
+}
  *
  * return (
  * <button onClick=drawCard>
